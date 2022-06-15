@@ -1,5 +1,5 @@
 #include<stdio.h>
-
+#include<conio.h>
 
 typedef struct{
 	int id;
@@ -38,7 +38,7 @@ int main(){
 	
 		
 	
-	fclose(file);
+
 }
 
 void read(WORKERS data[5]){
@@ -57,12 +57,24 @@ void read(WORKERS data[5]){
 }
 
 void write(WORKERS data[5], char fileName[30]){
-FILE *file;
+FILE *file, *fileR;
+char c;
 file=fopen(fileName, "a");
 	fprintf(file, "ID\tNAME\tGENDER\tINCOME\n");
 	for(int i=0;i<5;i++){
 		fprintf(file, "%d\t%s\t%c\t$%.2f\n", data[i].id, data[i].name, data[i].gender, data[i].income);
 	}
+fclose(file);	
+fileR=fopen(fileName, "r");
+
+
+do{
+	c=getc(fileR);
+	printf("%c", c);
+	}while(c != EOF);
+getch();
+fclose(fileR);
+	
 }
 
 void writeByGender(WORKERS data[5], char fileName[30]){
